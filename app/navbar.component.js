@@ -9,22 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 /**
- * Created by omeralper on 12/18/2016.
+ * Created by omeralper on 1/15/2017.
  */
 var core_1 = require("@angular/core");
-var socket_injectable_1 = require("./socket.injectable");
-var AppComponent = (function () {
-    function AppComponent(socketService) {
-        this.socketService = socketService;
+var NavbarComponent = (function () {
+    function NavbarComponent() {
     }
-    return AppComponent;
+    return NavbarComponent;
 }());
-AppComponent = __decorate([
+NavbarComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        templateUrl: 'app/app.html'
+        selector: 'navbar',
+        templateUrl: 'app/navbar.html'
     }),
-    __metadata("design:paramtypes", [socket_injectable_1.SocketService])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+    __metadata("design:paramtypes", [])
+], NavbarComponent);
+exports.NavbarComponent = NavbarComponent;
+//# sourceMappingURL=navbar.component.js.map

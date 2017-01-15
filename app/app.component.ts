@@ -2,7 +2,8 @@
  * Created by omeralper on 12/18/2016.
  */
 import { Component } from '@angular/core';
-import * as io from 'socket.io-client';
+
+import {SocketService} from "./socket.injectable";
 
 @Component({
     selector: 'my-app',
@@ -10,8 +11,7 @@ import * as io from 'socket.io-client';
 })
 
 export class AppComponent {
-    constructor(){
-        var socket = io();
-        socket.emit('add user', 'omer');
+    constructor(private socketService:SocketService){
+
     }
 }

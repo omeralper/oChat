@@ -2,13 +2,18 @@
  * Created by omeralper on 12/18/2016.
  */
 import { NgModule }      from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }  from './app.component';
 import {AppRoutingModule} from "./app.routing.module";
+import {LoginComponent} from "./login.component";
+import {SocketService} from "./socket.injectable";
+import {NavbarComponent} from "./navbar.component";
 
 @NgModule({
-    imports:      [ BrowserModule,AppRoutingModule ],
-    declarations: [ AppComponent],
-    bootstrap:    [ AppComponent ]
+    imports:      [ BrowserModule, FormsModule, AppRoutingModule ],
+    providers:    [ SocketService ],
+    declarations: [ AppComponent, LoginComponent, NavbarComponent],
+    bootstrap:    [ AppComponent,NavbarComponent ]
 })
 export class AppModule { }

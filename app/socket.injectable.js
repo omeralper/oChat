@@ -1,3 +1,6 @@
+/**
+ * Created by omeralper on 1/15/2017.
+ */
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8,23 +11,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-/**
- * Created by omeralper on 12/18/2016.
- */
 var core_1 = require("@angular/core");
-var socket_injectable_1 = require("./socket.injectable");
-var AppComponent = (function () {
-    function AppComponent(socketService) {
-        this.socketService = socketService;
+var io = require("socket.io-client");
+var SocketService = (function () {
+    function SocketService() {
+        this.socket = io();
+        // this.socket.emit('add user', 'omer');
     }
-    return AppComponent;
+    return SocketService;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'my-app',
-        templateUrl: 'app/app.html'
-    }),
-    __metadata("design:paramtypes", [socket_injectable_1.SocketService])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+SocketService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], SocketService);
+exports.SocketService = SocketService;
+//# sourceMappingURL=socket.injectable.js.map

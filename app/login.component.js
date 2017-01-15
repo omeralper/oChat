@@ -13,18 +13,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var core_1 = require("@angular/core");
 var socket_injectable_1 = require("./socket.injectable");
-var AppComponent = (function () {
-    function AppComponent(socketService) {
+var LoginComponent = (function () {
+    function LoginComponent(socketService) {
         this.socketService = socketService;
+        this.loginData = {};
     }
-    return AppComponent;
+    LoginComponent.prototype.login = function () {
+        this.socketService.socket.emit('newUser', this.loginData);
+    };
+    return LoginComponent;
 }());
-AppComponent = __decorate([
+LoginComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        templateUrl: 'app/app.html'
+        selector: '[login]',
+        templateUrl: 'app/login.html',
+        styleUrls: ['app/login.css']
     }),
     __metadata("design:paramtypes", [socket_injectable_1.SocketService])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], LoginComponent);
+exports.LoginComponent = LoginComponent;
+//# sourceMappingURL=login.component.js.map
