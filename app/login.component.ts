@@ -2,8 +2,8 @@
  * Created by omeralper on 12/18/2016.
  */
 import { Component } from '@angular/core';
-import * as io from 'socket.io-client';
-import {SocketService} from "./socket.injectable";
+import {SocketService} from "./services/socket.injectable";
+import {AuthenticationService, UserData} from "./services/authentication.injectable";
 
 @Component({
     selector: '[login]',
@@ -12,17 +12,14 @@ import {SocketService} from "./socket.injectable";
 })
 
 export class LoginComponent {
-    private loginData = <LoginData>{};
-    constructor(private socketService:SocketService){
+    private userData = <UserData>{};
+    constructor(private socketService:SocketService, private authenticationService:AuthenticationService){
 
     }
 
     login(){
-        this.socketService.socket.emit('newUser',this.loginData);
+        this.authenticationService.currentUser = this.userData;
+        this.socketService.socket.emit('new user',this.userData);
     }
 }
 
-export interface LoginData{
-    email:string;
-    password:string;
-}

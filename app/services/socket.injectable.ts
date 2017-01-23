@@ -10,6 +10,5 @@ export class SocketService {
     public socket:SocketIOClient.Socket;
     constructor() {
         this.socket = io();
-        // this.socket.emit('add user', 'omer');
     }
 }

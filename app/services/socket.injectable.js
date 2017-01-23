@@ -16,7 +16,6 @@ var io = require("socket.io-client");
 var SocketService = (function () {
     function SocketService() {
         this.socket = io();
-        // this.socket.emit('add user', 'omer');
     }
     return SocketService;
 }());

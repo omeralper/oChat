@@ -1,4 +1,16 @@
 <h1>Hello {{name}} this is main module</h1>
-
-<input class="form-control" />
-<input type="button" class="btn btn-default btn-primary " value="Send"/>
+<div id="dialogContainer">
+    <div class="well">
+        test
+    </div>
+    <div class="well">
+        sdfsdfad
+    </div>
+</div>
+<form action="#">
+    <input #test ([ngModel])="message" (keydown)="typing();" class="form-control" name="mes"/>
+    {{message | json}}
+    <p>{{currentTypers.join(',')}}</p>
+    <p>{{joinedUser}}</p>
+    <input (click)="send()" type="button" class="btn btn-default btn-primary " value="Send" name="send"/>
+</form>

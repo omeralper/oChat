@@ -12,14 +12,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by omeralper on 12/18/2016.
  */
 var core_1 = require("@angular/core");
-var socket_injectable_1 = require("./socket.injectable");
+var socket_injectable_1 = require("./services/socket.injectable");
+var authentication_injectable_1 = require("./services/authentication.injectable");
 var LoginComponent = (function () {
-    function LoginComponent(socketService) {
+    function LoginComponent(socketService, authenticationService) {
         this.socketService = socketService;
-        this.loginData = {};
+        this.authenticationService = authenticationService;
+        this.userData = {};
     }
     LoginComponent.prototype.login = function () {
-        this.socketService.socket.emit('newUser', this.loginData);
+        this.authenticationService.currentUser = this.userData;
+        this.socketService.socket.emit('new user', this.userData);
     };
     return LoginComponent;
 }());
@@ -29,7 +32,7 @@ LoginComponent = __decorate([
         templateUrl: 'app/login.html',
         styleUrls: ['app/login.css']
     }),
-    __metadata("design:paramtypes", [socket_injectable_1.SocketService])
+    __metadata("design:paramtypes", [socket_injectable_1.SocketService, authentication_injectable_1.AuthenticationService])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

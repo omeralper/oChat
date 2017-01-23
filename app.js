@@ -8,7 +8,6 @@ var server = all.server;
 var chatServer = require('./server/chatServer');
 var path = require('path');
 
-
 chatServer.start();
 // app.use('/node_modules',express.static(path.join(__dirname, '..', 'node_modules')));
 app.use(express.static(__dirname));

@@ -12,11 +12,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by omeralper on 12/18/2016.
  */
 var core_1 = require("@angular/core");
-var socket_injectable_1 = require("./socket.injectable");
+var socket_injectable_1 = require("./services/socket.injectable");
+var authentication_injectable_1 = require("./services/authentication.injectable");
 var AppComponent = (function () {
-    function AppComponent(socketService) {
+    function AppComponent(changeDetector, socketService, authenticationService) {
+        var _this = this;
+        this.changeDetector = changeDetector;
         this.socketService = socketService;
+        this.authenticationService = authenticationService;
+        this.currentTypers = [];
+        socketService.socket.on('typing', function (typer) {
+            _this.currentTypers.push(typer);
+        });
+        socketService.socket.on('stop typing', function (typer) {
+            var i = _this.currentTypers.indexOf(typer);
+            _this.currentTypers.splice(i, 1);
+        });
+        socketService.socket.on('user joined', function (data) {
+            _this.joinedUser = data.name;
+        });
+        socketService.socket.on('new message', function (data) {
+            var newDialog = $('<div>')
+                .html(data.message)
+                .addClass('well');
+            $('#dialogContainer').append(newDialog);
+        });
     }
+    AppComponent.prototype.typing = function () {
+        var thisUser = this.authenticationService.currentUser;
+        this.socketService.socket.emit('typing', { name: thisUser.name });
+    };
+    AppComponent.prototype.send = function () {
+        this.socketService.socket.emit('new message', this.message);
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -24,7 +52,9 @@ AppComponent = __decorate([
         selector: 'my-app',
         templateUrl: 'app/app.html'
     }),
-    __metadata("design:paramtypes", [socket_injectable_1.SocketService])
+    __metadata("design:paramtypes", [core_1.ChangeDetectorRef,
+        socket_injectable_1.SocketService,
+        authentication_injectable_1.AuthenticationService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

@@ -17,8 +17,9 @@ var platform_browser_1 = require("@angular/platform-browser");
 var app_component_1 = require("./app.component");
 var app_routing_module_1 = require("./app.routing.module");
 var login_component_1 = require("./login.component");
-var socket_injectable_1 = require("./socket.injectable");
+var socket_injectable_1 = require("./services/socket.injectable");
 var navbar_component_1 = require("./navbar.component");
+var authentication_injectable_1 = require("./services/authentication.injectable");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -27,7 +28,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, app_routing_module_1.AppRoutingModule],
-        providers: [socket_injectable_1.SocketService],
+        providers: [socket_injectable_1.SocketService, authentication_injectable_1.AuthenticationService],
         declarations: [app_component_1.AppComponent, login_component_1.LoginComponent, navbar_component_1.NavbarComponent],
         bootstrap: [app_component_1.AppComponent, navbar_component_1.NavbarComponent]
     }),
